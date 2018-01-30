@@ -10,14 +10,15 @@ paypal.configure({
 module.exports = {
    pay: function(req,res){
      const item_price = req.body.price ? (typeof req.body.price === 'number' ? req.body.price : req.body.price.toString()) : "25.00"
-     const items_array = req.body.items ? req.body.items : [{"name": "Red Sox Hat", "sku": "001", "price": "25.00","currency": "USD", "quantity": 1}]
+     const items_array = req.body.items ? req.body.items : {"list":[{"name": "Red Sox Hat", "sku": "001", "price": "25.00","currency": "USD", "quantity": 1}]}
      console.log("items_array", items_array)
+     console.log("req.body", req.body)
 
      var total_price = 0
      const items_list = []
 
      // dynamic list array
-     for (var item of items_array){
+     for (var item of items_array.list){
        console.log("IN FOR LOOP", item.name)
        items_list.push({
          "name": item.name,
@@ -62,7 +63,7 @@ module.exports = {
        } else {
            for(let i = 0;i < payment.links.length;i++){
              if(payment.links[i].rel === 'approval_url'){
-               res.redirect(payment.links[i].href);
+               res.json(payment.links[i].href);
              }
            }
        }
