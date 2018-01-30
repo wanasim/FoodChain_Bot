@@ -1,4 +1,5 @@
 const paypal = require('paypal-rest-sdk');
+const request = require('request')
 
 paypal.configure({
     'mode': 'sandbox', //sandbox or live
@@ -38,8 +39,8 @@ module.exports = {
            "payment_method": "paypal"
        },
        "redirect_urls": {
-           "return_url": "http://localhost:8000/success",
-           "cancel_url": "http://localhost:8000/cancel"
+           "return_url": "https://paypalmicroservice.herokuapp.com/success",
+           "cancel_url": "https://paypalmicroservice.herokuapp.com/cancel"
        },
        "transactions": [{
            "item_list": {
@@ -109,6 +110,46 @@ module.exports = {
 
    base: function(req,res){
      res.send('Please go to the /pay route to make a transaction')
+   },
+   test: function(req,res){
+       var list=[]
+       console.log("IN test!!!!!!!!!!!!!!!!!!!!!!!!")
+      list.push({
+        "name": "McDonalds",
+        "sku": "001",
+        "price": "7.44",
+        "currency":"USD",
+        "quantity":1
+      })
+
+      const items = {"list": list}
+      console.log(items)
+
+      // const url = "https://paypalmicroservice-gse00013232.apaas.us6.oraclecloud.com/pay"
+      const url = 'https://paypalmicroservice.herokuapp.com/pay'
+
+      request({
+          url: url,
+          method: "POST",
+          json: true,   // <--Very important!!!
+          body: items
+      }, function (error, response, body){
+        while(!response){
+          continue;
+        }
+          console.log(response.body);
+      });
+
+      // fetch(url, {
+      //   method: 'POST',
+      //   body: items
+      // }).then(function(data){
+      //   return data.json()
+      // }).then(function(data){
+      //   // conversation.reply({text: data})
+      //   console.log(data)
+      //   res.send(data)
+      // })
    },
 
    reroute: function(req,res){

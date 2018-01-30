@@ -12,6 +12,9 @@ module.exports = function(app){
    app.get('/cancel', function(req,res){
      paypalController.canceled(req,res)
    });
+   app.get('/test', function(req,res){
+     paypalController.test(req,res)
+   })
    app.get('/index', function(req, res){
       paypalController.index(req,res);
    });
