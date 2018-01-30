@@ -128,17 +128,22 @@ module.exports = {
       // const url = "https://paypalmicroservice-gse00013232.apaas.us6.oraclecloud.com/pay"
       const url = 'https://paypalmicroservice.herokuapp.com/pay'
 
-      request({
+
+      setTimeout(() => {
+        // console.log('timeout');
+        request({
           url: url,
           method: "POST",
           json: true,   // <--Very important!!!
           body: items
-      }, function (error, response, body){
-        while(!response){
-          continue;
-        }
+        }, function (error, response, body){
           console.log(response.body);
-      });
+        });
+
+
+      }, 10000);
+
+
 
       // fetch(url, {
       //   method: 'POST',
