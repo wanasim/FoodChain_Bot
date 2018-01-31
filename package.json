@@ -9,9 +9,11 @@
   "author": "",
   "license": "",
   "dependencies": {
+    "deasync": "^0.1.12",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "paypal-rest-sdk": "^1.8.1",
-    "request": "^2.83.0"
+    "request": "^2.83.0",
+    "sync": "^0.2.5"
   }
 }

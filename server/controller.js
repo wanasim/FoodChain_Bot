@@ -10,8 +10,8 @@ paypal.configure({
 
 module.exports = {
    pay: function(req,res){
-     const item_price = req.body.price ? (typeof req.body.price === 'number' ? req.body.price : req.body.price.toString()) : "25.00"
-     const items_array = req.body.items ? req.body.items : {"list":[{"name": "Red Sox Hat", "sku": "001", "price": "25.00","currency": "USD", "quantity": 1}]}
+     const item_price = req.body.price ? (typeof req.body.price === 'number' ? req.body.price : req.body.price.toString()) : "8.44"
+     const items_array = req.body.items ? req.body.items : {"list":[{"name": "Red Sox Hat", "sku": "001", "price": "8.44","currency": "USD", "quantity": 1}]}
      console.log("items_array", items_array)
      console.log("req.body", req.body)
 
@@ -24,11 +24,11 @@ module.exports = {
        items_list.push({
          "name": item.name,
          "sku": item.sku ? item.sku : "001",
-         "price": item.price ? (typeof item.price === 'number' ? item.price : item.price.toString()) : "25.00",
+         "price": item.price ? (typeof item.price === 'number' ? item.price : item.price.toString()) : "8.44",
          "currency": item.currency ? item.currency : "USD",
          "quantity": item.quantity ? item.quantity : 1
        })
-       total_price += item.price ? (typeof item.price === 'string' ? parseInt(item.price) : item.price) : 25
+       total_price += item.price ? (typeof item.price === 'string' ? parseFloat(item.price) : item.price) : 8.44
      }
      console.log("END FOR LOOP")
      console.log("total_price",total_price )
@@ -84,7 +84,7 @@ module.exports = {
        "transactions": [{
            "amount": {
                "currency": "USD",
-               "total": "25.00"
+               "total": "8.44"
            }
        }]
      };
@@ -117,7 +117,7 @@ module.exports = {
       list.push({
         "name": "McDonalds",
         "sku": "001",
-        "price": "7.44",
+        "price": "8.44",
         "currency":"USD",
         "quantity":1
       })
@@ -127,34 +127,27 @@ module.exports = {
 
       // const url = "https://paypalmicroservice-gse00013232.apaas.us6.oraclecloud.com/pay"
       const url = 'https://paypalmicroservice.herokuapp.com/pay'
+      var done1 = false;
+      var url2 = "";
 
 
-      setTimeout(() => {
-        // console.log('timeout');
-        request({
+        var requested = request({
           url: url,
           method: "POST",
+          timeout: 15000000,
           json: true,   // <--Very important!!!
           body: items
         }, function (error, response, body){
           console.log(response.body);
+          url2=response.body;
+          done1 = true;
         });
+        console.log("AFTER")
+        require('deasync').loopWhile(function(){return !done1;});
+        console.log("url2", typeof url2)
 
 
-      }, 10000);
 
-
-
-      // fetch(url, {
-      //   method: 'POST',
-      //   body: items
-      // }).then(function(data){
-      //   return data.json()
-      // }).then(function(data){
-      //   // conversation.reply({text: data})
-      //   console.log(data)
-      //   res.send(data)
-      // })
    },
 
    reroute: function(req,res){
