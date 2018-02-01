@@ -64,15 +64,11 @@ module.exports = {
        if (error) {
            throw error;
        } else {
-           for(let i = 0;i < payment.links.length;i++){
-             if(payment.links[i].rel === 'self'){
-               // console.log("LINK1", typeof payment.links[i].href)
-               // final_url = payment.links[i].href
-               console.log("CREATING INITIAL PAYMENT", payment)
-               res.json(payment.links[i].href);
-
-             }
-           }
+         var links = {
+           self: payment.links[0].href,
+           redirect: payment.links[1].href
+         }
+         res.send(links)
        }
      });
      //console.log("final_url", final_url)
