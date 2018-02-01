@@ -65,15 +65,18 @@ module.exports = {
            throw error;
        } else {
            for(let i = 0;i < payment.links.length;i++){
-             if(payment.links[i].rel === 'approval_url'){
+             if(payment.links[i].rel === 'payment.id'){
                // console.log("LINK1", typeof payment.links[i].href)
                // final_url = payment.links[i].href
+               console.log("CREATING INITIAL PAYMENT", payment)
                res.json(payment.links[i].href);
+
              }
            }
        }
      });
-     console.log("final_url", final_url)
+     //console.log("final_url", final_url)
+
 
 
    },
@@ -98,7 +101,7 @@ module.exports = {
            console.log(error.response);
            throw error;
        } else {
-           console.log("CHECKING RESPONSE", payment);
+           console.log("APPROVED", payment);
            request.get('https://foodchaintest.herokuapp.com/components/success', (error, response, body) => {
               res.send("Success?????")
             })
