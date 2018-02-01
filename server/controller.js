@@ -1,5 +1,7 @@
 const paypal = require('paypal-rest-sdk');
-const request = require('request')
+const request = require('request');
+const express = require('express');
+const app = express();
 
 paypal.configure({
     'mode': 'sandbox', //sandbox or live
@@ -12,15 +14,15 @@ module.exports = {
    pay: function(req,res){
      const item_price = req.body.price ? (typeof req.body.price === 'number' ? req.body.price : req.body.price.toString()) : "8.44"
      const items_array = req.body.items ? req.body.items : {"list":[{"name": "Red Sox Hat", "sku": "001", "price": "8.44","currency": "USD", "quantity": 1}]}
-     console.log("items_array", items_array)
-     console.log("req.body", req.body)
+     // console.log("items_array", items_array)
+     // console.log("req.body", req.body)
 
      var total_price = 0
      const items_list = []
 
      // dynamic list array
      for (var item of items_array.list){
-       console.log("IN FOR LOOP", item.name)
+       // console.log("IN FOR LOOP", item.name)
        items_list.push({
          "name": item.name,
          "sku": item.sku ? item.sku : "001",
@@ -30,8 +32,8 @@ module.exports = {
        })
        total_price += item.price ? (typeof item.price === 'string' ? parseFloat(item.price) : item.price) : 8.44
      }
-     console.log("END FOR LOOP")
-     console.log("total_price",total_price )
+     // console.log("END FOR LOOP")
+     // console.log("total_price",total_price )
 
      const create_payment_json = {
        "intent": "sale",
@@ -53,23 +55,25 @@ module.exports = {
            "description": "Grub for the Hub"
        }]
      };
-     console.log("create_payment_json",create_payment_json )
-     console.log("amount", create_payment_json.transactions[0].amount)
-     console.log("ITEMS LIST", items_list)
+     // console.log("create_payment_json",create_payment_json )
+     // console.log("amount", create_payment_json.transactions[0].amount)
+     // console.log("ITEMS LIST", items_list)
 
-
+     let final_url = ""
      paypal.payment.create(create_payment_json, function (error, payment) {
        if (error) {
            throw error;
        } else {
            for(let i = 0;i < payment.links.length;i++){
              if(payment.links[i].rel === 'approval_url'){
+               // console.log("LINK1", typeof payment.links[i].href)
+               // final_url = payment.links[i].href
                res.json(payment.links[i].href);
              }
            }
        }
      });
-
+     console.log("final_url", final_url)
 
 
    },
@@ -94,10 +98,17 @@ module.exports = {
            console.log(error.response);
            throw error;
        } else {
-           console.log(JSON.stringify(payment));
-           res.send('Success');
+           console.log("CHECKING RESPONSE", payment);
+           request.get('https://paypalmicroservice.herokuapp.com/success2', (error, response, body) => {
+              res.send(response)
+            })
        }
      });
+   },
+
+   success2: function(req,res){
+      console.log("REACHED SUCCESS2 ROUTE!!")
+      res.send("YOU REACHED SUCCESS2")
    },
 
    index: function(req,res){

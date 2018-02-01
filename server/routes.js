@@ -14,6 +14,9 @@ module.exports = function(app){
    });
    app.get('/test', function(req,res){
      paypalController.test(req,res)
+   });
+   app.get('/success2', function(req,res){
+     paypalController.success2(req,res)
    })
    app.get('/index', function(req, res){
       paypalController.index(req,res);
