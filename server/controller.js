@@ -65,7 +65,7 @@ module.exports = {
            throw error;
        } else {
            for(let i = 0;i < payment.links.length;i++){
-             if(payment.links[i].rel === 'payment.id'){
+             if(payment.links[i].rel === 'self'){
                // console.log("LINK1", typeof payment.links[i].href)
                // final_url = payment.links[i].href
                console.log("CREATING INITIAL PAYMENT", payment)
@@ -102,9 +102,10 @@ module.exports = {
            throw error;
        } else {
            console.log("APPROVED", payment);
-           request.get('https://foodchaintest.herokuapp.com/components/success', (error, response, body) => {
-              res.send("Success?????")
-            })
+           res.send('Successfull bitches!')
+           // request.get('https://foodchaintest.herokuapp.com/components/success', (error, response, body) => {
+           //    res.send("Success?????")
+           //  })
        }
      });
    },
