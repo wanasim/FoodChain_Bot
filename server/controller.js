@@ -100,7 +100,7 @@ module.exports = {
        } else {
            console.log("CHECKING RESPONSE", payment);
            request.get('https://paypalmicroservice.herokuapp.com/success2', (error, response, body) => {
-              res.send(response, body)
+              res.send(response)
             })
        }
      });
