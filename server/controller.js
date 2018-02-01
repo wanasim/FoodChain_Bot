@@ -99,7 +99,7 @@ module.exports = {
            throw error;
        } else {
            console.log("CHECKING RESPONSE", payment);
-           request.get('https://foodchaintest.herokuapp.com/success', (error, response, body) => {
+           request.get('https://foodchaintest.herokuapp.com/components/success', (error, response, body) => {
               res.send("Success?????")
             })
        }
