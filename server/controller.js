@@ -99,8 +99,8 @@ module.exports = {
            throw error;
        } else {
            console.log("CHECKING RESPONSE", payment);
-           request.get('https://paypalmicroservice.herokuapp.com/success2', (error, response, body) => {
-              res.send(response)
+           request.get('https://foodchaintest.herokuapp.com/success', (error, response, body) => {
+              res.send("Success")
             })
        }
      });
