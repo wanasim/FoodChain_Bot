@@ -68,7 +68,7 @@ module.exports = {
              if(payment.links[i].rel === 'approval_url'){
                // console.log("LINK1", typeof payment.links[i].href)
                // final_url = payment.links[i].href
-               res.redirect(payment.links[i].href);
+               res.json(payment.links[i].href);
              }
            }
        }
