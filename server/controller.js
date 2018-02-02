@@ -41,8 +41,8 @@ module.exports = {
            "payment_method": "paypal"
        },
        "redirect_urls": {
-           "return_url": "https://paypalmicroservice.herokuapp.com/success",
-           "cancel_url": "https://paypalmicroservice.herokuapp.com/cancel"
+           "return_url": "https://foodchaintest.herokuapp.com/success",
+           "cancel_url": "https://foodchaintest.herokuapp.com/cancel"
        },
        "transactions": [{
            "item_list": {
@@ -98,10 +98,12 @@ module.exports = {
            throw error;
        } else {
            console.log("APPROVED", payment);
-           res.redirect('https://www.messenger.com/closeWindow/?image_url=https://wallpaperbrowse.com/media/images/10-kitten-cuteness-1.jpg&display_text=kittens')
+           // res.redirect('https://www.messenger.com/closeWindow/?image_url=https://wallpaperbrowse.com/media/images/10-kitten-cuteness-1.jpg&display_text=kittens')
+
            // request.get('https://foodchaintest.herokuapp.com/components/success', (error, response, body) => {
            //    res.send("Success?????")
            //  })
+           res.sendFile(__dirname + '/index.html')
        }
      });
    },

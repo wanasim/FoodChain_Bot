@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Payment Successful</title>
+    <script type="text/javascript">
+        (function(d, s, id){
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'Messenger'));
+
+        window.extAsyncInit = function() {
+          // the Messenger Extensions JS SDK is done loading
+          console.log("SDK Loaded")
+          MessengerExtensions.requestCloseBrowser(function success() {
+              // webview closed
+              console.log("Closed")
+            }, function error(err) {
+              // an error occurred
+              console.log(err)
+            });
+        };
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
