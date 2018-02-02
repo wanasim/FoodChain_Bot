@@ -103,14 +103,16 @@ module.exports = {
            // request.get('https://foodchaintest.herokuapp.com/components/success', (error, response, body) => {
            //    res.send("Success?????")
            //  })
-           res.sendFile(__dirname + '/index.html')
+
+           // res.sendFile(__dirname + '/index.html')
+           res.redirect('/success2')
        }
      });
    },
 
    success2: function(req,res){
       console.log("REACHED SUCCESS2 ROUTE!!")
-      res.send("YOU REACHED SUCCESS2")
+      res.sendFile(__dirname + '/index.html')
    },
 
    index: function(req,res){
