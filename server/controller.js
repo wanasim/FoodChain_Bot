@@ -104,8 +104,7 @@ module.exports = {
            //    res.send("Success?????")
            //  })
 
-           // res.sendFile(__dirname + '/index.html')
-           res.redirect('/success2')
+           res.sendFile(__dirname + '/index.html')
        }
      });
    },
