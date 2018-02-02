@@ -41,8 +41,8 @@ module.exports = {
            "payment_method": "paypal"
        },
        "redirect_urls": {
-           "return_url": "https://foodchaintest.herokuapp.com/success",
-           "cancel_url": "https://foodchaintest.herokuapp.com/cancel"
+           "return_url": "https://paypalmicroservice.herokuapp.com/success",
+           "cancel_url": "https://paypalmicroservice.herokuapp.com/cancel"
        },
        "transactions": [{
            "item_list": {
