@@ -101,10 +101,10 @@ module.exports = {
            // res.redirect('https://www.messenger.com/closeWindow/?image_url=https://wallpaperbrowse.com/media/images/10-kitten-cuteness-1.jpg&display_text=kittens')
 
            // request.get('https://foodchaintest.herokuapp.com/components/success', (error, response, body) => {
-           //    res.send("Success?????")
            //  })
+              res.send("Success")
 
-           res.sendFile(__dirname + '/index.html')
+           // res.sendFile(__dirname + '/index.html')
        }
      });
    },
