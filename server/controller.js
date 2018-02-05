@@ -12,8 +12,8 @@ paypal.configure({
 
 module.exports = {
    pay: function(req,res){
-     const item_price = req.body.price ? (typeof req.body.price === 'number' ? req.body.price : req.body.price.toString()) : "8.44"
-     const items_array = req.body.items ? req.body.items : {"list":[{"name": "Red Sox Hat", "sku": "001", "price": "8.44","currency": "USD", "quantity": 1}]}
+     const item_price = req.body.price ? (typeof req.body.price === 'number' ? req.body.price : req.body.price.toString()) : "7.44"
+     const items_array = req.body.items ? req.body.items : {"list":[{"name": "Red Sox Hat", "sku": "001", "price": "7.44","currency": "USD", "quantity": 1}]}
      // console.log("items_array", items_array)
      // console.log("req.body", req.body)
 
@@ -26,11 +26,11 @@ module.exports = {
        items_list.push({
          "name": item.name,
          "sku": item.sku ? item.sku : "001",
-         "price": item.price ? (typeof item.price === 'number' ? item.price : item.price.toString()) : "8.44",
+         "price": item.price ? (typeof item.price === 'number' ? item.price : item.price.toString()) : "7.44",
          "currency": item.currency ? item.currency : "USD",
          "quantity": item.quantity ? item.quantity : 1
        })
-       total_price += item.price ? (typeof item.price === 'string' ? parseFloat(item.price) : item.price) : 8.44
+       total_price += item.price ? (typeof item.price === 'string' ? parseFloat(item.price) : item.price) : 7.44
      }
      // console.log("END FOR LOOP")
      // console.log("total_price",total_price )
@@ -87,7 +87,7 @@ module.exports = {
        "transactions": [{
            "amount": {
                "currency": "USD",
-               "total": "8.44"
+               "total": "7.44"
            }
        }]
      };
@@ -131,7 +131,7 @@ module.exports = {
       list.push({
         "name": "McDonalds",
         "sku": "001",
-        "price": "8.44",
+        "price": "7.44",
         "currency":"USD",
         "quantity":1
       })
