@@ -41,8 +41,8 @@ module.exports = {
            "payment_method": "paypal"
        },
        "redirect_urls": {
-           "return_url": "https://paypalmicroservice.herokuapp.com/success",
-           "cancel_url": "https://paypalmicroservice.herokuapp.com/cancel"
+           "return_url": "http://localhost:8000/success",
+           "cancel_url": "http://localhost:8000/cancel"
        },
        "transactions": [{
            "item_list": {
@@ -102,9 +102,9 @@ module.exports = {
 
            // request.get('https://foodchaintest.herokuapp.com/components/success', (error, response, body) => {
            //  })
-              res.send("Success")
+              // res.send("Success")
 
-           // res.sendFile(__dirname + '/index.html')
+           res.sendFile(__dirname + '/index.html')
        }
      });
    },

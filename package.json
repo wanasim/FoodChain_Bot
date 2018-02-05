@@ -9,6 +9,7 @@
   "author": "",
   "license": "",
   "dependencies": {
+    "bootstrap": "^4.0.0",
     "deasync": "^0.1.12",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
