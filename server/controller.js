@@ -68,7 +68,8 @@ module.exports = {
            self: payment.links[0].href,
            redirect: payment.links[1].href
          }
-         res.send(links)
+         // res.send(links)
+         res.redirect(links.redirect)
        }
      });
      //console.log("final_url", final_url)
@@ -98,11 +99,9 @@ module.exports = {
            throw error;
        } else {
            console.log("APPROVED", payment);
-           // res.redirect('https://www.messenger.com/closeWindow/?image_url=https://wallpaperbrowse.com/media/images/10-kitten-cuteness-1.jpg&display_text=kittens')
 
-           // request.get('https://foodchaintest.herokuapp.com/components/success', (error, response, body) => {
-           //  })
-              // res.send("Success")
+
+
 
            res.sendFile(__dirname + '/index.html')
        }
@@ -111,7 +110,7 @@ module.exports = {
 
    success2: function(req,res){
       console.log("REACHED SUCCESS2 ROUTE!!")
-      res.sendFile(__dirname + '/index.html')
+      res.render('start')
    },
 
    index: function(req,res){

@@ -48,8 +48,38 @@
 //     }]
 // };
 
-console.log('Before')
-setImmediate(()=>{
-  console.log('INside')
-})
-console.log('After')
+
+
+
+const request = require('request');
+
+var options = {
+    method: 'GET',
+    url: 'https://api.sandbox.paypal.com/v1/payments/payment/PAY-9W441850F35150900LJ444DI',
+    headers: {
+      authorization: 'Basic QWVaM3FlTXU3WXBfUi1CRUZ1Y19melZ1UEpDQmtUcmQzRUQyUUdicXdUa21xcWpZM2FGbFJXYWUyamZyZmpBR24tdUN2b3owTThaT00wdnI6RUc4WUtmaDhONFNsUkdyZzFSYjB4eWdWek5CM2Z3NEdxQTI2UW5GeEMyRWlTdEkxenlaekxoa3VjX2ZNSlI2WVhrQm9yamY3ZUstX1FocmQ=',
+    }
+  };
+
+  var bob = true
+
+  while(bob){
+      request(options, function (error, response2, body) {
+          if (error) throw new Error(error);
+
+          logger.info(util.inspect("BODY " + body, {showHidden: false, depth: null}))
+          var payment_state = JSON.parse(body)
+          if(payment_state.state === 'approved'){
+              logger.info(util.inspect("CLEARING INTERVAL ", {showHidden: false, depth: null}))
+              // conversation.reply({ text: "Transaction Completed"});
+              //conversation.transition()
+              //logger.info(util.inspect("RESPONDING WITH TEXT ", {showHidden: false, depth: null}))
+              console.log('breaking')
+              bob = false;
+
+          }
+          console.log("looping")
+          
+
+        });
+  }
