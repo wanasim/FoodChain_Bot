@@ -110,7 +110,7 @@ module.exports = {
 
    success2: function(req,res){
       console.log("REACHED SUCCESS2 ROUTE!!")
-      res.render('start')
+      res.render('doj')
    },
 
    index: function(req,res){
