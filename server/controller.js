@@ -68,8 +68,8 @@ module.exports = {
            self: payment.links[0].href,
            redirect: payment.links[1].href
          }
-         // res.send(links)
-         res.redirect(links.redirect)
+         res.send(links)
+         // res.redirect(links.redirect)
        }
      });
      //console.log("final_url", final_url)
