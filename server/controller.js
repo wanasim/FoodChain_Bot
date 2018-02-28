@@ -112,6 +112,7 @@ module.exports = {
       console.log("REACHED SUCCESS2 ROUTE!!")
       res.render('doj')
    },
+   
 
    index: function(req,res){
       res.render('index')

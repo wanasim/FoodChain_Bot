@@ -5,9 +5,11 @@ const bodyParser = require('body-parser');
 const http = require('http');
 const ejs = require('ejs');
 const port = process.env.PORT || 8000;
+var path = require('path');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'oac')));
 
 app.set('view engine', 'ejs');
 
