@@ -111,7 +111,7 @@ module.exports = {
    success2: function(req,res){
       console.log("REACHED SUCCESS2 ROUTE!!")
       // res.render('doj')
-      res.sendFile('../views/doj.html')
+      res.sendFile(__dirname + '/doj.html')
    },
 
 
