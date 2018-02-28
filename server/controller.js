@@ -110,9 +110,10 @@ module.exports = {
 
    success2: function(req,res){
       console.log("REACHED SUCCESS2 ROUTE!!")
-      res.render('doj')
+      // res.render('doj')
+      res.sendFile('../views/doj.html')
    },
-   
+
 
    index: function(req,res){
       res.render('index')
